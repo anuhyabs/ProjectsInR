@@ -1,0 +1,771 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={DATA 557 Homework Assignment 3},
+  pdfauthor={Anuhya B S},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{DATA 557 Homework Assignment 3}
+\author{Anuhya B S}
+\date{February 5, 2022}
+
+\begin{document}
+\maketitle
+
+\hypertarget{data-lead.csv}{%
+\section{Data: `lead.csv'}\label{data-lead.csv}}
+
+The data are from a study of the association between exposure to lead
+and IQ. The study was conducted in an urban area around a lead smelter.
+A random sample of 124 children who lived in the area was selected. Each
+study participant had a blood sample drawn in both 1972 and 1973 to
+assess blood concentrations of lead. The children were grouped based on
+their blood concentrations as follows:
+
+Group 1: concentration \textless{} 40 mg/L in both 1972 and 1973 Group
+2: concentration \textgreater{} 40 mg/L in both 1972 and 1973 or
+\textgreater{} 40 mg/L in 1973 alone (3 participants) Group 3:
+concentration \textgreater{} 40 mg/L in 1972 but \textless{} 40 mg/L in
+1973
+
+Each participant completed an IQ test in 1973. (A subset of the IQ
+scores from this study were used in HW 1, Question 3.) The variables in
+the data set are listed below.
+
+ID: Participant identification number SEX: Participant sex (1=M or 2=F)
+GROUP: As described above (1, 2, or 3) IQ: IQ score
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{leadData <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'lead_study.csv'}\NormalTok{)}
+\NormalTok{leadData}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     SEX GROUP  IQ
+## 1     1     1  70
+## 2     1     1  85
+## 3     1     1  86
+## 4     1     1  76
+## 5     1     1  84
+## 6     1     1  96
+## 7     1     1  94
+## 8     1     1  97
+## 9     1     1  99
+## 10    1     1  80
+## 11    1     1 118
+## 12    1     1  86
+## 13    1     1 141
+## 14    1     1  96
+## 15    1     1  96
+## 16    1     1 107
+## 17    1     1  80
+## 18    1     1 107
+## 19    1     1 101
+## 20    1     1  96
+## 21    1     1  99
+## 22    1     1  99
+## 23    1     1 105
+## 24    1     1  50
+## 25    1     1 120
+## 26    1     1  93
+## 27    1     1 100
+## 28    1     1 105
+## 29    1     1  80
+## 30    1     1 111
+## 31    1     1 104
+## 32    1     1  85
+## 33    1     1  94
+## 34    1     1  75
+## 35    1     1  76
+## 36    1     1 107
+## 37    1     1  88
+## 38    1     1 107
+## 39    1     1  85
+## 40    1     1  76
+## 41    1     1  95
+## 42    1     1  86
+## 43    1     1  89
+## 44    1     1  76
+## 45    1     1 101
+## 46    1     1  74
+## 47    1     2  82
+## 48    1     2  85
+## 49    1     2  75
+## 50    1     2  85
+## 51    1     2 101
+## 52    1     2  94
+## 53    1     2  88
+## 54    1     2 104
+## 55    1     2  88
+## 56    1     2 112
+## 57    1     2  83
+## 58    1     2 104
+## 59    1     2 101
+## 60    1     2  96
+## 61    1     2  76
+## 62    1     2  80
+## 63    1     2  79
+## 64    1     3  72
+## 65    1     3  92
+## 66    1     3  86
+## 67    1     3  79
+## 68    1     3  83
+## 69    1     3 114
+## 70    1     3  93
+## 71    1     3  98
+## 72    1     3  46
+## 73    1     3  82
+## 74    1     3  92
+## 75    1     3 111
+## 76    1     3  78
+## 77    2     1  56
+## 78    2     1 115
+## 79    2     1  77
+## 80    2     1 128
+## 81    2     1  88
+## 82    2     1  86
+## 83    2     1  91
+## 84    2     1 125
+## 85    2     1 115
+## 86    2     1 106
+## 87    2     1  96
+## 88    2     1  99
+## 89    2     1  85
+## 90    2     1  88
+## 91    2     1  87
+## 92    2     1  98
+## 93    2     1  78
+## 94    2     1  87
+## 95    2     1  94
+## 96    2     1  89
+## 97    2     1  73
+## 98    2     1  89
+## 99    2     1  96
+## 100   2     1  72
+## 101   2     1  97
+## 102   2     1  76
+## 103   2     1 104
+## 104   2     1  96
+## 105   2     1 108
+## 106   2     1 102
+## 107   2     1  77
+## 108   2     1  92
+## 109   2     2  93
+## 110   2     2  80
+## 111   2     2  89
+## 112   2     2  80
+## 113   2     2  88
+## 114   2     2  92
+## 115   2     2  75
+## 116   2     3  90
+## 117   2     3  71
+## 118   2     3 100
+## 119   2     3  91
+## 120   2     3  91
+## 121   2     3  85
+## 122   2     3  97
+## 123   2     3  91
+## 124   2     3  77
+## 125   2     1 111
+## 126   2     1  79
+## 127   2     1 124
+## 128   2     1  89
+## 129   2     1  85
+## 130   2     1  88
+## 131   2     1 120
+## 132   2     1 113
+## 133   2     1 100
+## 134   2     2  92
+## 135   2     2  79
+## 136   2     2  87
+## 137   2     2  80
+## 138   2     2  86
+## 139   2     2  91
+## 140   2     2  73
+## 141   2     2  87
+## 142   2     3  70
+## 143   2     3  94
+## 144   2     3  92
+## 145   2     3  90
+## 146   2     3  86
+## 147   2     3  95
+## 148   2     3  88
+## 149   2     3  75
+\end{verbatim}
+
+\textbf{1. The first goal is to compare the mean IQ scores for males and
+females. Use a 2-sample t-test for this comparison. What is the
+p-value?}
+
+For the goal to compare the mean IQ scores, the null hypothesis is:
+\[H_0: \mu_M = \mu_F\] where \(\mu_M\) is the mean IQ score for male and
+\(\mu_F\) is the mean IQ score for female.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ, SEX, mean))}
+\NormalTok{s =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ, SEX, sd))}
+\NormalTok{n =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ, SEX, length))}
+\KeywordTok{data.frame}\NormalTok{(m,s,n,(s}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          m        s  n   X.s.2.
+## 1 91.23684 14.93083 76 222.9298
+## 2 90.87671 13.58507 73 184.5540
+\end{verbatim}
+
+Since the variances are nearly equal, we consider the 2 sample equal
+variance T-test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$SEX == 1] and leadData$IQ[leadData$SEX == 2]
+## t = 0.15381, df = 147, p-value = 0.878
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -4.267092  4.987351
+## sample estimates:
+## mean of x mean of y 
+##  91.23684  90.87671
+\end{verbatim}
+
+The p-value is \textbf{0.878}.
+
+\textbf{2. State the conclusion from your test.} Since the p-value is
+greater than the level of significance 0.05, we \textbf{do not have
+enough evidence to reject the hull hypothesis} of equal mean IQ scores
+for males and females.
+
+\textbf{3. Are the independence assumptions valid for the t-test in this
+situation? Give a brief explanation.}
+
+The independence assumptions are valid for the t-test in this case as
+the group of male and female are independent of each other. The data
+collected is not paired so the data collected from one group would not
+have an effect on the other group.
+
+\textbf{4. The second goal is to compare the mean IQ scores in the 3
+groups. State in words the null hypothesis for this test.}
+
+The null hypothesis is: \[H_0: \mu_1 = \mu_2 = \mu_3\] where \(\mu_1\),
+\(\mu_2\), \(\mu_3\) are the mean IQ scores of group 1, 2 and 3
+respectively. The null hypothesis is that the mean IQ scores are all
+equal for groups 1, 2 and 3.
+
+\textbf{5. State in words the alternative hypothesis for this test.}
+
+The alternative hypothesis is that the mean IQ scores are not all equal
+for groups 1, 2 and 3.
+
+\textbf{6. What method should be used to perform the test?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ, GROUP, mean))}
+\NormalTok{s =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ, GROUP, sd))}
+\NormalTok{n =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ, GROUP, length))}
+\KeywordTok{data.frame}\NormalTok{(m,s,n,(s}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          m         s  n    X.s.2.
+## 1 93.72414 15.570313 87 242.43464
+## 2 87.65625  9.502493 32  90.29738
+## 3 86.96667 12.962767 30 168.03333
+\end{verbatim}
+
+The most appropriate test to perform the comparison of two or more
+groups is the \textbf{ANOVA test}. In this case, we use the ANOVA test
+to test equal mean IQ scores in all 3 groups.
+
+\textbf{7. Perform the test. Report the p-value.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{aov}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ}\OperatorTok{~}\NormalTok{leadData}\OperatorTok{$}\NormalTok{GROUP))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Df Sum Sq Mean Sq F value Pr(>F)  
+## leadData$GROUP   1   1321  1320.6   6.766 0.0102 *
+## Residuals      147  28692   195.2                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+The p-value is \textbf{0.0102}.
+
+\textbf{8. State your conclusion about the evidence for an association
+between lead exposure and IQ.}
+
+We \textbf{reject the null hypothesis} of an association between lead
+exposure and IQ as the p-value is much smaller than the value of level
+of significance (0.05).
+
+\textbf{9. Are there strong reasons to believe that the assumptions of
+this test are not met? Briefly justify your answer.}
+
+ALl the following assumptions must be met for ANOVA test: 1.
+Independence (of samples and of observations within each sample) 2.
+Equal variances 3. Large sample sizes or normal distributions
+
+All the three groups do not have equal variances (242,90,168 - seen as a
+part of Q7). Thus there is not strong reason to believe the assumption
+of the test is not met. We can assume that the data for Group 1, Group 2
+and Group 3 are independent of each other, however since not all the
+assumptions of ANOVA test are met, the F-test may not have the right
+type I error probability.
+
+\textbf{10. Conduct all pairwise comparison of group means. Report the
+p-values.}
+
+Since the variances are not relatively equal for all three groups, we
+would perform the Welch t-test for the pairwise comparison.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p12 =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'1'}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'2'}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p12}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "1"] and leadData$IQ[leadData$GROUP == "2"]
+## t = 2.5622, df = 90.607, p-value = 0.01205
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   1.363464 10.772312
+## sample estimates:
+## mean of x mean of y 
+##  93.72414  87.65625
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p13 =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'1'}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'3'}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "1"] and leadData$IQ[leadData$GROUP == "3"]
+## t = 2.3333, df = 60.024, p-value = 0.023
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   0.9643448 12.5505977
+## sample estimates:
+## mean of x mean of y 
+##  93.72414  86.96667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p23 =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'2'}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'3'}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p23}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "2"] and leadData$IQ[leadData$GROUP == "3"]
+## t = 0.23761, df = 52.997, p-value = 0.8131
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -5.131548  6.510715
+## sample estimates:
+## mean of x mean of y 
+##  87.65625  86.96667
+\end{verbatim}
+
+The p-value for Group 1 and 2 comparison is \textbf{0.01205}. The
+p-value for Group 1 and 3 comparison is \textbf{0.023}. The p-value for
+Group 2 and 3 comparison is \textbf{0.8131}.
+
+\textbf{11. What conclusion about the association between lead and IQ
+would you draw from the pairwise comparisons of group means? Does it
+agree with the conclusion in Q8? (Consider the issue of multiple testing
+in your answer.)}
+
+We \textbf{reject the null hypothesis} about the association between
+lead and IQ as the p-value is smaller than the level of significance for
+two of the pairwise comparisons.
+
+If we consider the issue of multiple testing and apply Bonferroni's
+correction on the data, the new level of significance would be 0.05/3 =
+0.0167.After comparing with the new significance level, we
+\textbf{reject the null hypothesis} as the p-value is small than the new
+level of significance for one group.
+
+After applying the Bonferroni correction, the conclusion is not
+different from conclusion of Q8.
+
+\textbf{12. Now we wish to compare the 3 group means for males and
+females separately. Display some appropriate descriptive statistics for
+this analysis.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{], GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{], mean))}
+\NormalTok{s_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{], GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{], sd))}
+\NormalTok{n_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{], GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{], length))}
+\KeywordTok{data.frame}\NormalTok{(m_}\DecValTok{1}\NormalTok{,s_}\DecValTok{1}\NormalTok{,n_}\DecValTok{1}\NormalTok{,(s_}\DecValTok{1}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        m_1      s_1 n_1 X.s_1.2.
+## 1 92.93478 15.42351  46 237.8845
+## 2 90.17647 11.13124  17 123.9044
+## 3 86.61538 17.32791  13 300.2564
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{], GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{], mean))}
+\NormalTok{s_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{], GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{], sd))}
+\NormalTok{n_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{with}\NormalTok{(leadData,}\KeywordTok{tapply}\NormalTok{(IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{], GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{], length))}
+\KeywordTok{data.frame}\NormalTok{(m_}\DecValTok{2}\NormalTok{,s_}\DecValTok{2}\NormalTok{,n_}\DecValTok{2}\NormalTok{,(s_}\DecValTok{2}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        m_2       s_2 n_2  X.s_2.2.
+## 1 94.60976 15.877465  41 252.09390
+## 2 84.80000  6.471917  15  41.88571
+## 3 87.23529  8.898942  17  79.19118
+\end{verbatim}
+
+\textbf{13. Perform tests to compare the mean IQ scores in the 3 groups
+for males and females separately. Report the p-values from the two
+tests.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{aov}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{]}\OperatorTok{~}\NormalTok{leadData}\OperatorTok{$}\NormalTok{GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                   Df Sum Sq Mean Sq F value Pr(>F)
+## leadData$GROUP[leadData$SEX == 1]  1    427   427.5   1.942  0.168
+## Residuals                         74  16292   220.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{aov}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{]}\OperatorTok{~}\NormalTok{leadData}\OperatorTok{$}\NormalTok{GROUP[leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                   Df Sum Sq Mean Sq F value Pr(>F)  
+## leadData$GROUP[leadData$SEX == 2]  1    922   922.1   5.295 0.0243 *
+## Residuals                         71  12366   174.2                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+The p-value from the test to compare the mean IQ scores for males is
+\textbf{0.168}. The p-value from the test to compare the mean IQ scores
+for females is \textbf{0.0243}.
+
+\textbf{14. What can you conclude about the association between lead and
+IQ from these tests? Does it agree with the result in Q8 and Q11?
+(Consider multiple testing.)}
+
+From the above questions, we \textbf{do not have enough evidence to
+reject the null hypothesis} for males and we \textbf{reject the null
+hypothesis} for females.
+
+Thus, We can conclude that there is no association between lead and IQ
+for males however there is an association between lead and IQ for
+females.
+
+The conclusions agree with the results of Q8 and Q11 for females but not
+for males.
+
+\textbf{15. Now perform all 3 pairwise comparisons of groups for males
+and females separately. Report the p-values from these tests?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p12_m =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'1'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'2'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p12_m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "1" & leadData$SEX == 1] and leadData$IQ[leadData$GROUP == "2" & leadData$SEX == 1]
+## t = 0.78142, df = 39.661, p-value = 0.4392
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -4.377699  9.894323
+## sample estimates:
+## mean of x mean of y 
+##  92.93478  90.17647
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p13_m =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'1'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'3'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p13_m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "1" & leadData$SEX == 1] and leadData$IQ[leadData$GROUP == "3" & leadData$SEX == 1]
+## t = 1.1886, df = 17.738, p-value = 0.2503
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -4.862555 17.501351
+## sample estimates:
+## mean of x mean of y 
+##  92.93478  86.61538
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p23_m =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'2'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'3'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{1}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p23_m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "2" & leadData$SEX == 1] and leadData$IQ[leadData$GROUP == "3" & leadData$SEX == 1]
+## t = 0.64603, df = 19.325, p-value = 0.5259
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -7.963105 15.085277
+## sample estimates:
+## mean of x mean of y 
+##  90.17647  86.61538
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p12_f =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'1'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'2'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p12_f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "1" & leadData$SEX == 2] and leadData$IQ[leadData$GROUP == "2" & leadData$SEX == 2]
+## t = 3.2807, df = 53.22, p-value = 0.001831
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   3.812848 15.806664
+## sample estimates:
+## mean of x mean of y 
+##  94.60976  84.80000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p13_f =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'1'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'3'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p13_f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "1" & leadData$SEX == 2] and leadData$IQ[leadData$GROUP == "3" & leadData$SEX == 2]
+## t = 2.2433, df = 50.748, p-value = 0.02927
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   0.7739536 13.9749703
+## sample estimates:
+## mean of x mean of y 
+##  94.60976  87.23529
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p23_f =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'2'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],leadData}\OperatorTok{$}\NormalTok{IQ[leadData}\OperatorTok{$}\NormalTok{GROUP}\OperatorTok{==}\StringTok{'3'} \OperatorTok{&}\StringTok{ }\NormalTok{leadData}\OperatorTok{$}\NormalTok{SEX}\OperatorTok{==}\DecValTok{2}\NormalTok{],}\DataTypeTok{var.equal =}\NormalTok{ F)}
+\NormalTok{p23_f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  leadData$IQ[leadData$GROUP == "2" & leadData$SEX == 2] and leadData$IQ[leadData$GROUP == "3" & leadData$SEX == 2]
+## t = -0.89218, df = 29.016, p-value = 0.3796
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -8.017810  3.147222
+## sample estimates:
+## mean of x mean of y 
+##  84.80000  87.23529
+\end{verbatim}
+
+The p-value from the test to compare the mean IQ scores for Group 1 and
+2 males is \textbf{0.4392}. The p-value from the test to compare the
+mean IQ scores for Group 1 and 3 males is \textbf{0.2503}. The p-value
+from the test to compare the mean IQ scores for Group 2 and 3 males is
+\textbf{0.5259}.
+
+The p-value from the test to compare the mean IQ scores for Group 1 and
+2 females is \textbf{0.001831}. The p-value from the test to compare the
+mean IQ scores for Group 1 and 3 females is \textbf{0.02927}. The
+p-value from the test to compare the mean IQ scores for Group 2 and 3
+females is \textbf{0.3796}.
+
+\textbf{16. What do you conclude about the association between lead and
+IQ from the results in Q15? Does your conclusion change from previous
+conclusions made in Q8, Q11 and Q14?}
+
+We \textbf{reject the null hypothesis} for female but \textbf{do not
+have evidence to reject the null hypothesis} for male based on the
+conclusions from Q15.
+
+The conclusions from the previous questions are as follows:
+
+Q8 -\textgreater{} reject the null hypothesis Q11 -\textgreater{} reject
+the null hypothesis Q14 -\textgreater{} reject the null hypothesis for
+females and do not reject the null hypothesis for males Q16
+-\textgreater{} reject the null hypothesis for females and do not reject
+the null hypothesis for males
+
+Thus, we can conclude that there is no association between lead exposure
+and IQ values.(from Q8 and Q11) However, when we compare the mean IQ
+scores in the 3 groups for males and females separately we see that
+there is no association between lead exposure and IQ values for males
+but there is an association between lead exposure and IQ values for
+female. (from Q14 and Q16).
+
+It can also be noted in all the four questions there is no association
+between the lead exposure and mean IQ scores for females.
+
+\end{document}
