@@ -1,0 +1,268 @@
+---
+title: "Data 557 HW4"
+author: "Anuhya B S"
+date: "2/13/2022"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Data: ‘Sales.csv’
+
+The data consist of sales prices for a sample of homes from a US city and some features of the houses.
+
+Variables:
+
+LAST_SALE_PRICE: the sale price of the home
+SQFT: area of the house (sq. ft.)
+LOT_SIZE: area of the lot (sq. ft.)
+BEDS: number of bedrooms
+BATHS: number of bathrooms
+
+```{r}
+sales = read.csv('Sales.csv')
+colnames(sales)
+summary(sales)
+```
+```{r}
+sales_new = na.omit(sales)
+summary(sales_new)
+```
+
+```{r}
+nrow(sales_new)
+```
+**1. Calculate all pairwise correlations between all five variables.**
+
+```{r}
+cor(sales_new)
+```
+
+The correlations between the five variables are as follows:\
+1. LAST_SALE_PRICE, SQFT = **0.7408940**\
+2. LAST_SALE_PRICE, LOT_SIZE = **0.1349629**\
+3. LAST_SALE_PRICE, BEDS = **0.3785385**\
+4. LAST_SALE_PRICE, BATHS  = **0.5980328**\
+5. SQFT, LOT_SIZE = **0.2369659**\
+6. SQFT, BEDS = **0.6360399**\
+7. SQFT, BATHS = **0.7455693**\
+8. LOT_SIZE, BEDS = **0.1770005**\
+9. LOT_SIZE, BATHS = **0.1353978**\
+10. BEDS, BATHS = **0.6163141**\
+
+**2. Make a  scatterplot of the sale price versus the area of the house. Describe the association between these two variables.**
+
+```{r}
+plot(sales_new$LAST_SALE_PRICE ~ sales_new$SQFT, data=sales_new,xlab = "Area(SQFT)", ylab = "Last Sale Price")
+```
+\
+From the above displayed scatterplot, it can be inferred that there is a strong linear correlation between the two variables Sale Price and Area (SQFT)
+
+**3. Fit a simple linear regression model (Model 1) with sale price as response variable and area of the house (SQFT) as predictor variable. State the estimated value of the intercept and the estimated coefficient for the area variable.**
+
+```{r}
+lm(LAST_SALE_PRICE ~ SQFT, data=sales_new)
+```
+The estimated value of the intercerpt is **-47566.5**.
+The estimated coefficient for the area variable is **350.9**.
+
+**4. Write the equation that describes the relationship between the mean sale price and SQFT.**
+
+$\alpha$ is the _intercept_ = -47566.5
+
+$\beta$ is the _regression coefficient_ for $Area$ = 350.9
+
+The equation of the fitted line is 
+$$
+\mbox{sale price} = -47566.5 + 350.9 \times \mbox{area}
+$$
+
+**5. State the interpretation in words of the estimated intercept.**
+
+The interpretation of $\alpha$ is the mean of $Y$ given $X=0$, i.e.,
+$\mbox{E}(Y | X=0) = \alpha + \beta \times 0 = \alpha$.
+This is the point where the regression line crosses the $y$-axis.
+
+For a given data set, the fitted regression model is written as
+$\mbox{E}(Y) = \hat\alpha + \hat\beta X$, where
+$\hat\alpha$ is the point where the fitted regression line crosses the y-axis
+and $\hat\beta$ is the slope of the fitted regression line.
+
+$\hat\alpha = -47566.5$ is the estimated mean sale price if the area is set to 0.
+
+**6. State the interpretation in words of the estimated coefficient for the area variable.**
+
+The interpretation of $\beta$ is the average _difference_ in the mean of $Y$ per unit _difference_ in $X$.
+
+Sometimes this is expressed as the average difference in $Y$ corresponding to a 1-unit difference in $X$, i.e.,
+$$
+\mbox{E}(Y | X=x+1)-\mbox{E}(Y | X=x) = \alpha+\beta (x+1) - (\alpha+\beta x) = \beta.
+$$
+
+For a given data set, the fitted regression model is written as
+$\mbox{E}(Y) = \hat\alpha + \hat\beta X$, where
+$\hat\alpha$ is the point where the fitted regression line crosses the y-axis
+and $\hat\beta$ is the slope of the fitted regression line.
+
+$\hat\beta = 350.9$ is the estimated average difference in sale price per unit difference in area.  
+
+**7. Add the LOT_SIZE variable to the linear regression model (Model 2). How did the estimated coefficient for the SQFT variable change?**
+
+```{r}
+summary(lm(formula = LAST_SALE_PRICE ~ SQFT, data = sales_new))$coef
+summary(lm(formula = LAST_SALE_PRICE ~ SQFT + LOT_SIZE, data = sales_new))$coef
+```
+The estimate of the coefficient of SQFT variable is  different in the two models: The estimated value in the second model is higher.
+
+First model: The coefficient of `SQFT' is > 0 and statistically significant
+
+Second model: The coefficient of `SQFT' is > 0 and statistically significant
+
+**8. State the interpretation of the coefficient of SQFT in Model 2.**
+
+In the first model the coefficient of `SQFT` is the average difference in sales price comparing different area sizes (in sqft).
+
+In the second model the coefficient of `SQFT` is interpreted as the average difference in sales price comparing different area sizes(in sqft) __having the same lot size(in sqft)__.
+
+Due to the addition of the lot size, there is a certain amount if change in the coefficient of the Area variable however, this addition does not have a significant impact on the estimated coefficient of area i.e. the Lot size variable does not have a confounding effect.
+
+**9. Report the R-squared values from the two models. Explain why they are different.**
+
+```{r}
+summary(lm(formula = LAST_SALE_PRICE ~ SQFT, data = sales_new))
+summary(lm(formula = LAST_SALE_PRICE ~ SQFT + LOT_SIZE, data = sales_new))
+```
+The $R^2$ value from the first model:$R^2 = 0.5489$.\
+The $R^2$ value from the second model:$R^2 = 0.5507$.
+
+For simple linear regression models, the R-squared is just the square of the Pearson correlation coefficient. For models with more than 1 predictor R-squared has an interpretation in terms of correlation between observed and fitted values and also as a percentage
+of variance explained by the model. The R squared values are different for the two models as one is a simple linear regression model with one variable and the other is a model having two predictors.
+
+**10. Report the estimates of the error variances from the two models. Explain why they are different.**
+
+The error variance is the variance of the errors $\epsilon_i$, is calculated using the sum of squares of residuals:
+
+$$
+\hat\sigma^2 = \frac{\sum_{i=1}^n e_i^2}{n-p},
+$$
+
+```{r}
+(summary(lm(formula = LAST_SALE_PRICE ~ SQFT, data = sales_new))$sigma)**2
+(summary(lm(formula = LAST_SALE_PRICE ~ SQFT + LOT_SIZE, data = sales_new))$sigma)**2
+```
+
+The estimated error variance of Model 1 is **95895947932**.
+The estimated error variance of Model 2 is **95548117507**.
+
+The estimated variance basically tells you about the variance of the standard errors. The estimated variance of the first model tells us about the variance of the standard errors when we take only one predictor into consideration. The estimated variance of the second model tells us about the variance of the standard error when we take take 2 predictors ( SQFT and LOT_SIZE) into consideration which is the reason why that the standard error variance differ for the two models.
+
+**11. State the interpretation of the estimated error variance for Model 2.**
+
+Estimated variance essentially tells us about the variance of the residuals. In the case of model two, there are multiple predictors. In such a case, the standard errors do not depend on just the sums of squares of the standard error but also on the sums of cross-products of the different predictor variables.
+
+The standard error of the regression coefficient can change when a variable is added to the modeled and whether or not it changes depends on the the sum of the squares of cross - products of predictors as well as whether the estimated of error variance changes. 
+In model two, we can see that the estimated error variance has changes, which indicates that the standard error of the regression model has also changed.
+
+**12. Test the null hypothesis that the coefficient of the SQFT variable in Model 2 is equal to 0. (Assume that the assumptions required for the test are met.)**
+
+The full model is
+
+$$
+\mbox{sale price} = \beta_0 + \beta_1 \times \mbox{area} + \beta_2 \times \mbox{lot_size}
+$$
+Testing that the coefficient of the SQFT variable is 0 in the model, the null hypothesis is $$H_0:\beta_1=0$$.
+
+The reduced model is
+$$
+\mbox{sale price} = \beta_0 + \beta_2 \times \mbox{lot_size}
+$$
+The F-test for full model is
+```{r}
+options(scipen = 999)
+anova(lm(LAST_SALE_PRICE ~ SQFT + LOT_SIZE, data = sales_new))#["Residuals","Sum Sq"]
+```
+
+The F-test for reduced models
+```{r}
+anova(lm(LAST_SALE_PRICE ~ LOT_SIZE, data = sales_new))
+```
+
+The F-statistic is defined as:
+$$
+F=\frac{(SSE_0 - SSE_1)/(df_1-df_0)}{SSE_1/(df_1)}
+$$
+
+The F-test for comparing full and reduced models
+
+\begin{eqnarray*}
+F&=&\frac{(SSE(\mbox{Reduced})-SSE(\mbox{Full}))/(df_R-df_F)}{SSE(\mbox{Full})/df_F}\\
+&=&\frac{(8.4803e+14-3.8812e+14)/(4063-4062)}{3.8812e+14/4062}\\
+&=&4813.474
+\end{eqnarray*}
+
+```{r}
+((848034857701759-388116453312974)/(4063-4062))/(388116453312974/4062)
+```
+The p-value obtained for the tail probability for the value **4813.474 in the F-distribution with 1 numerator df and 4062 denominator df** is:
+
+```{r}
+1-pf(4813.474,1,4062)
+```
+We **reject the null hypothesis** as the p value is less than the level of significance which mean that the SQFT variable is statistically significant and there is evidence for association between the SQFT and Last Sale Price.
+
+**13. Test the null hypothesis that the coefficients of both the SQFT and LOT_SIZE variables are equal to 0. Report the test statistic.**
+
+The full model is
+
+$$
+\mbox{sale price} = \beta_0 + \beta_1 \times \mbox{area} + \beta_2 \times \mbox{lot_size}
+$$
+
+Testing that the coefficient of the SQFT and LOT_SIZE variable is 0 in the model, the null hypothesis is $$H_0:\beta_1=\beta_2=0$$.
+
+The reduced model is
+$$
+\mbox{sale price} = \beta_0 
+$$
+
+The F-test for full model is
+```{r}
+anova(lm(LAST_SALE_PRICE ~ SQFT + LOT_SIZE, data = sales_new))
+```
+
+The F-test for reduced model is
+```{r}
+anova(lm(LAST_SALE_PRICE ~ 1, data = sales_new))
+```
+
+The F-test for comparing full and reduced models
+
+\begin{eqnarray*}
+F&=&\frac{(SSE(\mbox{Reduced})-SSE(\mbox{Full}))/(df_R-df_F)}{SSE(\mbox{Full})/df_F}\\
+&=&\frac{(8.6377e+14-3.8812e+14)/(4064-4062)}{3.8812e+14/4062}\\
+&=&2489.07
+\end{eqnarray*}
+
+```{r}
+((863768392527944-388116453312974)/(4064-4062))/(388116453312974/4062)
+```
+
+The F-statistic is **2489.07 with 2 numerator df and 4062 denominator df**.
+
+**14. What is the distribution of the test statistic under the null hypothesis (assuming model assumptions are met)?**
+
+The F-statistic is referred to the $F_{p_1-p_0,n-p_1}$ distribution for calculation of the p-value : $F_{2,4062}$
+
+**15. Report the p-value for the test in Q13.**
+
+The p-value obtained for the tail probability for the value 2489.037 in the F-distribution with 2 numerator df and 4062 denominator df is:
+```{r}
+1-pf(2489.037,2,4062)
+```
+The p value is 0.
+
+We **reject the null hypothesis** as the p value is less than the level of significance which mean that the SQFT and LOT_SIZE variables are statistically significant and there is evidence for association between the SQFT, LOT_SIZE and Last Sale Price.
